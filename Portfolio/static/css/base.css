@@ -1,0 +1,268 @@
+:root {
+  --bg-color: white;
+  --text-color: black;
+  --primary-color: rgba(0, 0, 0, 0.641);
+  --secondary-color: rgba(0, 0, 0, 0.467);
+  --transparent-color: rgba(0, 0, 0, 0.061);
+
+  --button-bg-color: black;
+  --button-text-color: white;
+}
+
+[data-theme="dark"] {
+  --bg-color: black;
+  --text-color: white;
+  --primary-color: rgba(255, 255, 255, 0.63);
+  --secondary-color: rgba(255, 255, 255, 0.467);
+  --transparent-color: rgba(255, 255, 255, 0.061);
+
+  --input-bg-color: #383838;
+  --button-bg-color: #2B2B2B;
+  --button-text-color: white;
+}
+
+[data-theme="dark"] .page-svg {
+  filter: blur(0.5px) invert(100%) !important;
+}
+
+[data-theme="dark"] .dark-mode {
+  display: none;
+}
+
+[data-theme="dark"] .light-mode {
+  display: block;
+}
+
+body {
+  background-color: var(--bg-color);
+
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  box-sizing: border-box;
+
+  font-family: "IBM Plex Mono", serif;
+}
+
+.spotlight {
+  align-self: flex-end;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  right: 1rem;
+
+  padding: 0.5rem;
+}
+
+.spotlight:hover {
+  cursor: pointer;
+
+  background-color: var(--transparent-color);
+
+  border-radius: 5px;
+}
+
+.search-icon {
+  margin: 0 0.5rem 0 0;
+
+  transform: scale(0.9);
+}
+
+.keybind {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+
+  border: 1px solid var(--primary-color);
+
+  padding: 0 0.5rem 0 0.5rem;
+
+  height: 2rem;
+
+  transform: scale(0.75);
+}
+
+.keybind p {
+  padding: 0;
+
+  color: var(--text-color);
+}
+
+.home-key {
+  margin: 0 0.75rem 0 0;
+
+  font-size: 1.4rem;
+}
+
+.spotlight-menu {
+  display: none;
+}
+
+body[spotlight-open] .spotlight-menu {
+  display: flex;
+  flex-direction: column;
+
+  width: 500px;
+
+  align-self: center;
+  position: fixed;
+  top: 50px;
+
+  z-index: 9999;
+
+  border: 0.5px solid var(--secondary-color);
+  border-radius: 5px;
+
+  background-color: var(--bg-color);
+
+  overflow: auto;
+}
+
+body[spotlight-open] :not(.spotlight-menu):not(.spotlight-menu *) {
+  filter: blur(0.5px);
+  pointer-events: none;
+}
+
+body[spotlight-open] {
+  overflow: hidden;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+
+  border-bottom: 0.5px solid var(--secondary-color);
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: none;
+
+  font-size: 0.8rem;
+  color: var(--text-color);
+
+  align-self: center;
+}
+
+.escape-key {
+  border: 0.5px solid var(--secondary-color);
+
+  padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+
+  color: var(--text-color);
+  font-size: 0.8rem;
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.spotlight-section {
+  border-bottom: 0.5px solid var(--secondary-color);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  padding: 0 0.5rem 1rem 0.5rem;
+}
+
+.spotlight-section:last-child {
+  border-bottom: none;
+}
+
+.spotlight-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--secondary-color);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 0.5rem;
+}
+
+.spotlight-button {
+  border: none;
+  outline: none;
+  background: none;
+
+  font-size: 0.9rem;
+  color: var(--primary-color);
+}
+
+.spotlight-svg {
+  filter: brightness(0) saturate(100%) invert(64%) sepia(91%) saturate(5118%)
+    hue-rotate(202deg) brightness(102%) contrast(99%);
+}
+
+.light-mode {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .spotlight {
+    display: none;
+    z-index: -1;
+  }
+
+  .menu-opener {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.5rem;
+
+    align-self: flex-end;
+    margin: 0.5rem 0.75rem 0 0;
+
+    border: 0.5px solid var(--secondary-color);
+    border-radius: 5px;
+
+    z-index: 9999;
+
+    cursor: pointer;
+  }
+
+  .line {
+    width: 1rem;
+    height: 0.1rem;
+
+    background-color: var(--text-color);
+
+    filter: brightness(0) saturate(100%) invert(64%) sepia(91%) saturate(5118%)
+      hue-rotate(202deg) brightness(102%) contrast(99%);
+
+    margin-bottom: 0.2rem;
+
+    z-index: -1;
+  }
+
+  .line:last-child {
+    margin-bottom: 0;
+  }
+
+  body[spotlight-open] .spotlight-menu {
+    transform: scale(0.65);
+  }
+}

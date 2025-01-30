@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}{% endblock %}</title>
+
+        {% load static %} 
+        
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        {% block css %} 
+        {% endblock %}
+    </head>
+    <body>
+        <div class="spotlight" onclick="openSpotlight(event)">
+            <img alt="search-icon" class="search-icon page-svg" src="{% static 'images/search-icon.svg' %}"/>
+
+            <div class="keybind">
+                <p class="home-key"></p>
+                <p class="completion">+ K</p>
+            </div>
+        </div>
+
+        <div class="menu-opener" onclick="openSpotlight(event)" ontouchstart="openSpotlight()">
+            <div class="line-1 line"></div>
+            <div class="line-2 line"></div>
+            <div class="line-3 line"></div>
+        </div>
+
+        <div class="spotlight-menu">
+            <div class="search">
+                <form action="#" method="GET">
+                    <input type="text" name="search" class="search-input" placeholder="Search for commands..." autofocus onkeydown="if(event.key === 'Enter'){ this.form.submit(); return false; }" autofocus>
+                </form>
+                <p class="escape-key" onclick="closeSpotlight()">ESC</p>
+            </div>
+
+            <div class="main-content">
+                <div class="theme-sec spotlight-section">
+                    <p class="theme-sec-title spotlight-title">WEBSITE THEME</p>
+
+                    <div class="button-container">
+                        <img class="dark-mode-icon spotlight-svg dark-mode" src="{% static 'images/dark-mode-icon.svg' %}" alt="dark-mode icon">
+                        <button class="colour-mode spotlight-button dark-mode" onclick="changeTheme()">Dark mode</button>
+
+                        <img class="light-mode-icon spotlight-svg light-mode" src="{% static 'images/light-mode-icon.svg' %}" alt="light-mode-icon">
+                        <button class="colour-mode spotlight-button light-mode" onclick="changeTheme()">Light mode</button>
+                    </div>
+                </div>
+
+                {% for category in categories %}
+                <div class="{{ category.name }}-sec spotlight-section">
+                    <p class="{{ category.name}}-title spotlight-title">{{ category.name|upper}}</p>
+
+                    <div class="{{ category }}-container container">
+                        {% for item in category.items.all %}
+                        <div class="{{ item.name }}-item button-container">
+                            <img class="{{ item.name}}-icon spotlight-svg" src="{{ item.icon.url }}" alt="{{ item.name }} icon">
+                            <button class="{{ item.name}}-button spotlight-button" onclick="{{ item.onclick_func }}">{{ item.name }}</button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <script>
+            function openSpotlight(event) {
+                event.stopPropagation();
+                console.log('open');
+                document.body.toggleAttribute('spotlight-open');
+            }
+
+            function closeSpotlight() {
+                document.body.removeAttribute('spotlight-open');
+            }
+        </script>
+
+        <script src="{% static 'js/keybinding.js' %}"></script>
+        <script src="{% static 'js/spotlight-funcs.js' %}"></script>
+        <script src="{% static 'js/auto-theme.js' %}"></script>
+        
+        {% block content %}{% endblock %}
+    </body>
+</html>

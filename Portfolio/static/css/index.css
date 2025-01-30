@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-container {
+  margin-top: 5rem;
+
+  align-self: center;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.pfp {
+    border-radius: 100%;
+
+    width: 115px;
+    height: 115px;
+
+    margin-right: 1.5rem;
+}
+
+.profile-text {
+    display: flex;
+    flex-direction: column;
+
+    font-family: "Inter", serif;
+    color: var(--text-color);
+}
+
+.profile-text h1, .profile-text p {
+    font-family: "Inter", serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+
+    margin: 0;
+}
+
+.profile-text p {
+    opacity: 50%;
+    font-size: 0.9rem;
+}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% load static %} 
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock %} 
+
+
+{% block content %} 
+<div class="profile-container">
+    <img src="{% static 'images/profile.webp'%}" alt="Profile Picture" class="pfp"/>
+    <div class="profile-text">
+        <h1 class="name">Mason Young</h1>
+        <p class="role">Student/Software Developer</p>
+    </div>
+</div>
+{% endblock %}

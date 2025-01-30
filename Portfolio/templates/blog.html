@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% load static %} 
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}" />
+{% endblock %}
+
+
+{% block content %} 
+
+{% if user.is_authenticated %}
+    <style>
+        .sign-in {
+            display: none;
+        }
+
+        .sign-out {
+            display: block;
+        }
+    </style>
+{% endif %}
+
+<button class="sign-in" onclick="openLogin()">Sign in</button>
+<a href="{% url 'signout' %}" class="sign-out">Sign out</a>
+
+<div class="login-container">
+    <div class="login-container-text">
+        <h1>Create an account</h1>
+        <p class="exit" onclick="openLogin()">X</p>
+    </div>
+
+    <form action="{% url 'signin' %}" method="POST" class="login-form">
+        {% csrf_token %}
+
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Sign In">
+    </form>
+</div>
+
+<div class="newest-post-container">
+    {% for post in posts %}
+        <div class="post" onclick="viewPost(event)">
+            <h1 class="date-posted">{{ post.date_posted }}</h1>
+            <h1 class="post-title">{{ post.title }}</h1>
+            <p class="post-content">{{ post.content|truncatewords:30 }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+
+<script>
+    function openLogin() {
+        document.querySelector('.login-container').toggleAttribute('shown');
+    }
+
+    function viewPost(event) {
+        if(event.target.closest('.post')) {
+            window.location = 'http://127.0.0.1:8000/' + event.target.closest('.post').querySelector('.post-title').textContent.trim().replace(/\s+/g, '-').toLowerCase();
+        }
+    }
+</script>
+{% endblock %}

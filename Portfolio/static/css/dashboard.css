@@ -1,0 +1,72 @@
+body {
+    display: flex;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.blog-form {
+    margin-top: 5rem;
+    align-self: center;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 50%;
+}
+
+.blog-form input {
+    background: none;
+    border: none;
+    outline: none;
+
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+.title {
+    font-size: 2.5rem;
+}
+
+.content {
+    height: 500px;
+    font-size: 1.5rem;
+
+    background: none;
+    border: none;
+    outline: none;
+
+    color: var(--text-color);
+}
+
+.content::placeholder {
+    color: var(--secondary-color);
+}
+
+.blog-form input::placeholder {
+    color: var(--secondary-color);
+}
+
+.submit {
+    align-self: flex-start;
+
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+
+    padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+
+    background-color: var(--button-bg-color);
+
+    color: var(--button-text-color);
+    text-decoration: none;
+    font-family: "Inter", serif;
+    font-size: 0.85rem;
+
+    border-radius: 5px;
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+}

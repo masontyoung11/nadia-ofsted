@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'dashboard' %}" method="POST" class="blog-form">
+    {% csrf_token %}
+
+    <input type="text" placeholder="Title" name="title" class="title" required>
+    <textarea placeholder="Content" name="content" class="content" required></textarea>
+
+    <button type="submit" class="submit">Submit</button>
+</form>
+{% endblock %}

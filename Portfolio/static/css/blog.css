@@ -1,0 +1,195 @@
+body {
+    overflow: hidden;
+}
+
+.sign-in {
+    align-self: flex-start;
+
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+
+    padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+
+    background-color: var(--button-bg-color);
+
+    color: var(--button-text-color);
+    text-decoration: none;
+    font-family: "Inter", serif;
+    font-size: 0.85rem;
+
+    border-radius: 5px;
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+}
+
+.sign-out {
+    display: none;
+
+    align-self: flex-start;
+
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+
+    padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+
+    background-color: var(--button-bg-color);
+
+    color: var(--button-text-color);
+    text-decoration: none;
+    font-family: "Inter", serif;
+    font-size: 0.85rem;
+
+    border-radius: 5px;
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+}
+
+.login-container {
+    display: none;
+}
+
+.login-container[shown] {
+    margin-top: 5rem;
+
+    align-self: center;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    background-color: var(--button-bg-color);
+
+    border-radius: 10px;
+
+    padding: 0.5rem;
+
+    transform: scale(1.25);
+}
+
+.login-container[shown] h1 {
+    font-family: "Inter", serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+
+    margin: 0;
+}
+
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+
+    width: 100%;
+}
+
+.login-form input {
+    padding: 0.75rem;
+
+    background: none;
+    border: none;
+    outline: none;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    border-radius: 10px;
+
+    margin: 0 0 1rem 0;
+
+    width: 100%;
+}
+
+.login-form input::placeholder {
+    color: var(--text-color);
+
+    font-family: "Inter", serif;
+    font-size: 0.75rem;
+}
+
+.login-form input[type="submit"] {
+    color: var(--text-color);
+
+    margin-bottom: 0 !important;
+}
+
+.login-container-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 0 0.5rem 0;
+    padding: 0.5rem 0 0 0;
+}
+
+.exit {
+    color: var(--secondary-color);
+
+    position: relative;
+    top: 0.2rem;
+    left: 1.25rem;
+
+    transform: scaleX(1.5);
+
+    margin: 0;
+    padding: 0;
+
+    cursor: pointer;
+}
+
+.newest-post-container {
+    align-self: center;
+
+    margin-top: 10rem;
+
+    width: 35%;
+
+    overflow:scroll;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post h1, .post p{
+    font-family: "Inter", serif;
+    color: var(--text-color);
+}
+
+.date-posted {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+
+    padding: 0;
+    margin: 0;
+
+    opacity: 50%;
+}
+
+.post-title {
+    font-size: 1.5rem;
+
+    padding: 0;
+    margin: 0;
+}
+
+.post-content {
+    font-size: 1.25rem;
+
+    padding: 0;
+    margin: 0 0 1rem 0;
+
+    opacity: 75%;
+}
+
+.post {
+    cursor: pointer;
+}
