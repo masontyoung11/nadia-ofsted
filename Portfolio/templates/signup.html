@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign up{% endblock %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <div class="page-text">
+        <h1 class="sign-up-title auth-title">Create an account</h1>
+        <p class="sign-up-description auth-description">Enter your details to make comments</p>
+    </div>
+
+    <form method="POST" action="{% url 'signup' %}" class="sign-in-form auth-form">
+        {% csrf_token %}
+
+        <input type="text" name="username" placeholder="Username" class="username-input auth-input" required>
+        <input type="text" name="email" placeholder="Email" class="email-input auth-input" required>
+        <input type="password" name="password" placeholder="Password" class="password-input auth-input" required>
+        <button type="submit" class="auth-button">Sign up</button>
+        <p class="auth-account-red">Already have an account? <a href="{% url 'signin' %}" class="auth-link">Sign in</a></p>
+    </form>
+</div>
+{% endblock %}

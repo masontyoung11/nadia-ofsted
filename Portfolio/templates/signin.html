@@ -5,10 +5,23 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
 {% endblock %}
 
 {% block content %}
-<h1 class="sign-in-title auth-title">Sign in to your account</h1>
-<p class="sign-in-title auth-title">Enter your details to make comments or create posts</p>
+<div class="page-content">
+    <div class="page-text">
+        <h1 class="sign-in-title auth-title">Sign in to your account</h1>
+        <p class="sign-in-description auth-description">Enter your details to make comments or create posts</p>
+    </div>
+
+    <form method="POST" action="{% url 'signin' %}" class="sign-in-form auth-form">
+        {% csrf_token %}
+
+        <input type="text" name="username" placeholder="Username" class="username-input auth-input" required>
+        <input type="password" name="password" placeholder="Password" class="password-input auth-input" required>
+        <button type="submit" class="auth-button">Sign in</button>
+        <p class="auth-account-red">Don't have an account? <a href="{% url 'signup' %}" class="auth-link">Sign up</a></p>
+    </form>
+</div>
 {% endblock %}

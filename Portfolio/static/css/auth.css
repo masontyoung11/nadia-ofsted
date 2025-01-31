@@ -1,0 +1,124 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+}
+
+.auth-title {
+    color: var(--text-color);
+    font-family: "Inter", serif;
+    text-align: center;
+
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+.auth-description {
+    color: var(--secondary-color);
+    font-family: "Inter", serif;
+    text-align: center;
+    
+    margin: 0;
+    padding: 0;
+}
+
+.auth-form {
+    align-self: center;
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 2rem 0 0 0;
+
+    width: 25rem;
+}
+
+.auth-input {
+    padding: 0.75rem;
+    margin: 0 0 1rem 0;
+
+    border: 2px solid var(--transparent-color);
+    border-radius: 10px;
+    background: none;
+    outline: none;
+
+    width: 100%;
+
+    font-family: "Inter", serif;
+    color: var(--text-color);
+}
+
+.auth-input:focus {
+    border: 2px solid var(--text-color);
+}
+
+.auth-input:not(:placeholder-shown) {
+    border: 2px solid var(--text-color);
+}
+
+.auth-input::placeholder {
+    font-family: "Inter", serif;
+
+    color: var(--secondary-color)
+}
+
+.auth-button {
+    font-family: "Inter", serif;
+
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: var(--text-color);
+    color: var(--background-color);
+    border: none;
+    outline: none;
+}
+
+.auth-account-red {
+    color: var(--text-color);
+    text-align: center;
+    font-family: "Inter", serif;
+}
+
+.auth-link {
+    color: var(--text-color);
+}
+
+@media screen and (max-width: 410px) {
+    .auth-title {
+        font-size: 4cqw;
+
+        padding: 0;
+        margin: 0;
+    }
+
+    .auth-description {
+        font-size: 3cqw;
+
+        padding: 0;
+        margin: 0;
+    }
+
+    .page-title {
+        width: 80% !important;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .auth-form {
+        width: 90%;
+    }
+}

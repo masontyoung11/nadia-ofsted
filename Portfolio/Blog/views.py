@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from spotlight.models import Categories
 from .models import Post
@@ -16,11 +17,23 @@ def signin(request):
             login(request, user)
             return redirect('dashboard')
         else:
-            print("failed")
-            print(username)
             return redirect('blog')
 
     return render(request, 'signin.html', {'categories': Categories.objects.all()})
+
+
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+
+        if User.objects.filter(username=username):
+            return redirect('signup')
+        else:
+            User.objects.create_user(username=username, email=email, password=password)
+
+    return render(request, 'signup.html', {'categories': Categories.objects.all()})
 
 
 def signout(request):
@@ -30,7 +43,7 @@ def signout(request):
 
 @login_required
 def dashboard(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_superuser:
         title = request.POST['title']
         content = request.POST['content']
 
@@ -42,7 +55,7 @@ def dashboard(request):
             return redirect('blog')
         else:
             Post.objects.create(title=title, content=content, search_title=search_title)
-
+    
 
     if not request.user.is_authenticated and not request.user.is_superuser:
         return redirect('blog')
