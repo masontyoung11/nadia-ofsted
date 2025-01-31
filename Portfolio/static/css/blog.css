@@ -2,14 +2,20 @@ body {
     overflow: hidden;
 }
 
-.sign-in {
-    align-self: flex-start;
-
+.buttons {
     position: fixed;
     left: 1rem;
     top: 1rem;
 
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.page-btn {
     padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+    margin-right: 1rem;
 
     background-color: var(--button-bg-color);
 
@@ -25,29 +31,12 @@ body {
     cursor: pointer;
 }
 
+.create-post {
+    display: none;
+}
+
 .sign-out {
     display: none;
-
-    align-self: flex-start;
-
-    position: fixed;
-    left: 1rem;
-    top: 1rem;
-
-    padding: 0.75rem 1.5rem 0.75rem 1.5rem;
-
-    background-color: var(--button-bg-color);
-
-    color: var(--button-text-color);
-    text-decoration: none;
-    font-family: "Inter", serif;
-    font-size: 0.85rem;
-
-    border-radius: 5px;
-    border: none;
-    outline: none;
-
-    cursor: pointer;
 }
 
 .login-container {

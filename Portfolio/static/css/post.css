@@ -1,41 +1,140 @@
 body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
+.page-btn {
+    padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+    margin-right: 1rem;
+
+    background-color: var(--button-bg-color);
+
+    color: var(--button-text-color);
+    text-decoration: none;
+    font-family: "Inter", serif;
+    font-size: 0.85rem;
+
+    border-radius: 5px;
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+
+    width: 9rem;
+
+    text-align: center;
+}
 
 .post-container {
-    margin-top: 5rem;
-    align-self: center;
+  margin-top: 5rem;
+  align-self: center;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    width: 50%;
+  width: 50%;
 }
 
 .post-container h1 {
-    font-size: 1.75rem;
-    color: var(--text-color);
+  font-size: 1.75rem;
+  color: var(--text-color);
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .date-posted {
-    color: var(--secondary-color);
-    font-size: 0.75rem !important;
+  color: var(--secondary-color);
+  font-size: 0.75rem !important;
 
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 
-    opacity: 50%;
+  opacity: 50%;
 }
 
-.post-container p{
-    font-size: 1rem;
-    color: var(--text-color);
+.post-container p {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.reply-container {
+  border-top: 1px solid var(--secondary-color);
+
+  padding: 1rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+
+  position: fixed;
+  bottom: 0;
+}
+
+.reply-title {
+  text-align: left;
+  font-family: "Inter", serif;
+
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+
+.reply-form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.auth-button {
+  margin-left: 1rem;
+}
+
+.replies { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    overflow: scroll;
+
+    width: 17rem;
+
+    margin-top: 1.5rem;
+}
+
+.reply {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-bottom: 1rem;
+}
+
+.reply-author {
+    font-family: "Inter", serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+
+    margin: 0;
+    padding: 0;
+}
+
+.reply-content {
+    font-family: "Inter", serif;
+
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .post-container {
+        width: 95%;
+    }
 }

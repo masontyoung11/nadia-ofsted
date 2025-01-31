@@ -19,12 +19,28 @@
         .sign-out {
             display: block;
         }
+
+        .create-post {
+            display: block;
+        }
+    </style>
+{% elif user.is_authenticated %}
+    <style>
+        .sign-in {
+            display: none;
+        }
+
+        .sign-out {
+            display: block;
+        }
     </style>
 {% endif %}
 
-<a href="{% url 'signin' %}" class="sign-in page-btn">Sign in</a>
-<a href="{% url 'signout' %}" class="sign-out page-btn">Sign out</a>
-<a href="{% url 'dashboard' %}" class="create-post page-btn">Create Post</a>
+<div class="buttons">
+    <a href="{% url 'signin' %}" class="sign-in page-btn">Sign in</a>
+    <a href="{% url 'signout' %}" class="sign-out page-btn">Sign out</a>
+    <a href="{% url 'dashboard' %}" class="create-post page-btn">Create Post</a>
+</div>
 
 
 <div class="newest-post-container">

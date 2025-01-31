@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from spotlight.models import Categories
-from .models import Post
+from .models import Post, Comment
 
 # Create your views here.
 def signin(request):
@@ -15,7 +16,7 @@ def signin(request):
 
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('blog')
         else:
             return redirect('blog')
 
@@ -54,10 +55,39 @@ def dashboard(request):
         if Post.objects.filter(title=title):
             return redirect('blog')
         else:
-            Post.objects.create(title=title, content=content, search_title=search_title)
+            Post.objects.create(title=title, content=content, search_title=search_title.lower())
     
 
     if not request.user.is_authenticated and not request.user.is_superuser:
         return redirect('blog')
     else:
         return render(request, 'dashboard.html', {'categories': Categories.objects.all()})
+    
+
+@login_required
+def delete_post(request, search_title):
+    if request.user.is_superuser:
+        try:
+            post = Post.objects.get(search_title=search_title)
+            post.delete()
+
+            return redirect('blog')
+        except Post.DoesNotExist:
+            return redirect('blog')
+        
+    return redirect('blog')
+
+@login_required
+def make_comment(request):
+    if request.method == 'POST':
+        post = Post.objects.get(search_title=request.POST['post_id'])
+        content = request.POST['reply']
+
+        print(request.user)
+
+        comment = Comment.objects.create(creator=request.user, content=content, post=post)
+        post.comments.add(comment)
+
+        return redirect(request.path)
+
+    return redirect('blog')

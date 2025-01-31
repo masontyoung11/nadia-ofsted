@@ -73,11 +73,11 @@ body {
 .auth-button {
     font-family: "Inter", serif;
 
-    padding: 1rem;
+    padding: 0.75rem;
     box-sizing: border-box;
     border-radius: 10px;
     background-color: var(--text-color);
-    color: var(--background-color);
+    color: var(--bg-color);
     border: none;
     outline: none;
 }

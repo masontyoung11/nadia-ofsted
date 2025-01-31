@@ -23,4 +23,6 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('signout', views.signout, name='signout'),
     path('dashboard', views.dashboard, name='dashboard'),
+    path('delete_post/<str:search_title>/', views.delete_post, name='delete_post'),
+    path('make-comment', views.make_comment, name='make_comment'),
 ]
