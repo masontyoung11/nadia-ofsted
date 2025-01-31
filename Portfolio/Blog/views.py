@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from spotlight.models import Categories
 from .models import Post
 
@@ -19,7 +20,7 @@ def signin(request):
             print(username)
             return redirect('blog')
 
-    return redirect('blog')
+    return render(request, 'signin.html', {'categories': Categories.objects.all()})
 
 
 def signout(request):
@@ -27,7 +28,7 @@ def signout(request):
     
     return redirect('blog')
 
-
+@login_required
 def dashboard(request):
     if request.method == 'POST':
         title = request.POST['title']
@@ -43,7 +44,7 @@ def dashboard(request):
             Post.objects.create(title=title, content=content, search_title=search_title)
 
 
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and not request.user.is_superuser:
         return redirect('blog')
     else:
         return render(request, 'dashboard.html', {'categories': Categories.objects.all()})

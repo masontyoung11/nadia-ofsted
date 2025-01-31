@@ -8,7 +8,7 @@ def index(request):
 
 def post(request, blog_post):
     post = get_object_or_404(Post, search_title = blog_post)
-    return render(request, 'post.html', {'post': post})
+    return render(request, 'post.html', {'post': post, 'categories': Categories.objects.all()})
 
     #TODO: 
     # - MAKE THIS WORK
