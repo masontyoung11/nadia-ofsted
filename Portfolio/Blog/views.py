@@ -46,6 +46,7 @@ def signout(request):
 @login_required
 def dashboard(request):
     if request.method == 'POST' and request.user.is_superuser:
+<<<<<<< HEAD
         edit = request.POST.get('edit')
 
         if edit:
@@ -68,6 +69,33 @@ def dashboard(request):
             search_title = request.POST['title'].replace(' ', '-').lower()
 
             if Post.objects.filter(title=title) or Post.objects:
+=======
+        if request.POST['edit']:
+            search_title = request.POST['edit']
+
+            try:
+                post = Post.objects.get(search_title=search_title)
+                post.title = request.POST['title']
+                post.content = request.POST['content']
+                search_title = request.POST['title'].replace(' ', '-').lower()
+                post.search_title = search_title
+                post.save()
+
+                return redirect('post', blog_post=search_title)
+            except Post.DoesNotExist:
+                return redirect('blog')
+            
+
+        else:
+            title = request.POST['title']
+            content = request.POST['content']
+
+            for letter in title:
+                if letter == ' ':
+                    search_title = title.replace(letter, '-')
+
+            if Post.objects.filter(title=title):
+>>>>>>> nadia-ofsted/dev
                 return redirect('blog')
             else:
                 Post.objects.create(title=title, content=content, search_title=search_title.lower())
