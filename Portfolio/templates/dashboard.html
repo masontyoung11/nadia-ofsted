@@ -7,12 +7,24 @@
 {% endblock %}
 
 {% block content %}
-<form action="{% url 'dashboard' %}" method="POST" class="blog-form">
-    {% csrf_token %}
 
-    <input type="text" placeholder="Title" name="title" class="title" required>
-    <textarea placeholder="Content" name="content" class="content" required></textarea>
+{% if post %}
+    <form action="{% url 'dashboard' %}" method="POST" class="blog-form">
+        {% csrf_token %}
+        <input type="hidden" name="edit" value="{{ post.search_title }}">
+        <input type="text" placeholder="Title" name="title" class="title" value="{{ post.title }}" required>
+        <textarea placeholder="Content" name="content" class="content" required>{{ post.content }}</textarea>
 
-    <button type="submit" class="submit">Submit</button>
-</form>
+        <button type="submit" class="submit">Submit</button>
+    </form>
+{% else %}
+    <form action="{% url 'dashboard' %}" method="POST" class="blog-form">
+        {% csrf_token %}
+
+        <input type="text" placeholder="Title" name="title" class="title" required>
+        <textarea placeholder="Content" name="content" class="content" required></textarea>
+
+        <button type="submit" class="submit">Submit</button>
+    </form>
+{% endif %}
 {% endblock %}
