@@ -46,20 +46,38 @@ def signout(request):
 @login_required
 def dashboard(request):
     if request.method == 'POST' and request.user.is_superuser:
-        title = request.POST['title']
-        content = request.POST['content']
+        if request.POST['edit']:
+            search_title = request.POST['edit']
 
-        for letter in title:
-            if letter == ' ':
-                search_title = title.replace(letter, '-')
+            try:
+                post = Post.objects.get(search_title=search_title)
+                post.title = request.POST['title']
+                post.content = request.POST['content']
+                search_title = request.POST['title'].replace(' ', '-').lower()
+                post.search_title = search_title
+                post.save()
 
-        if Post.objects.filter(title=title):
-            return redirect('blog')
+                return redirect('post', blog_post=search_title)
+            except Post.DoesNotExist:
+                return redirect('blog')
+            
+
         else:
-            Post.objects.create(title=title, content=content, search_title=search_title.lower())
+            title = request.POST['title']
+            content = request.POST['content']
+
+            for letter in title:
+                if letter == ' ':
+                    search_title = title.replace(letter, '-')
+
+            if Post.objects.filter(title=title):
+                return redirect('blog')
+            else:
+                Post.objects.create(title=title, content=content, search_title=search_title.lower())
     
 
-    if not request.user.is_authenticated and not request.user.is_superuser:
+    if not request.user.is_authenticated or not request.user.is_superuser:
+        logout(request)
         return redirect('blog')
     else:
         return render(request, 'dashboard.html', {'categories': Categories.objects.all()})
@@ -75,6 +93,8 @@ def delete_post(request, search_title):
             return redirect('blog')
         except Post.DoesNotExist:
             return redirect('blog')
+    else:
+        logout(request)
         
     return redirect('blog')
 
@@ -82,7 +102,16 @@ def delete_post(request, search_title):
 @login_required
 def edit_post(request, search_title):
     if request.user.is_superuser:
-        return redirect('blog')
+        try:
+            post = Post.objects.get(search_title=search_title)
+            return render(request, 'dashboard.html', {'categories': Categories.objects.all(), 'post': post})
+        except Post.DoesNotExist:
+            return redirect('blog')
+    else:
+        logout(request)
+        
+        
+    return redirect('blog')
 
 
 @login_required
