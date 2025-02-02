@@ -46,7 +46,9 @@ def signout(request):
 @login_required
 def dashboard(request):
     if request.method == 'POST' and request.user.is_superuser:
-        if request.POST['edit']:
+        edit = request.POST.get('edit')
+
+        if edit:
             search_title = request.POST['edit']
 
             try:
@@ -60,17 +62,12 @@ def dashboard(request):
                 return redirect('post', blog_post=search_title)
             except Post.DoesNotExist:
                 return redirect('blog')
-            
-
         else:
             title = request.POST['title']
             content = request.POST['content']
+            search_title = request.POST['title'].replace(' ', '-').lower()
 
-            for letter in title:
-                if letter == ' ':
-                    search_title = title.replace(letter, '-')
-
-            if Post.objects.filter(title=title):
+            if Post.objects.filter(title=title) or Post.objects:
                 return redirect('blog')
             else:
                 Post.objects.create(title=title, content=content, search_title=search_title.lower())
