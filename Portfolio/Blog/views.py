@@ -42,6 +42,7 @@ def signout(request):
     
     return redirect('blog')
 
+
 @login_required
 def dashboard(request):
     if request.method == 'POST' and request.user.is_superuser:
@@ -76,6 +77,13 @@ def delete_post(request, search_title):
             return redirect('blog')
         
     return redirect('blog')
+
+
+@login_required
+def edit_post(request, search_title):
+    if request.user.is_superuser:
+        return redirect('blog')
+
 
 @login_required
 def make_comment(request):

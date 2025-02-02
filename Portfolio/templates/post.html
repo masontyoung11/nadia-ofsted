@@ -13,7 +13,8 @@
 
 {% block content %}
 {% if user.is_superuser%}
-<a href="{% url 'delete_post' post.search_title %}" class="sign-in page-btn">Delete post</a>
+<a href="{% url 'delete_post' post.search_title %}" class="delete-post page-btn">Delete post</a>
+<a href="{% url 'edit_post' post.search_title %}" class="edit-post page-btn">Edit post</a>
 {% endif %}
 
 <div class="post-container">
