@@ -17,10 +17,14 @@ body {
 .pfp {
     border-radius: 100%;
 
-    width: 115px;
-    height: 115px;
+    width: 80px;
+    height: 80px;
 
     margin-right: 1.5rem;
+}
+
+.pfp:hover {
+  transform: scale(1.025);
 }
 
 .profile-text {
@@ -29,9 +33,12 @@ body {
 
     font-family: "Inter", serif;
     color: var(--text-color);
+
+    width: 200px; 
+    height: fit-content;
 }
 
-.profile-text h1, .profile-text p {
+.profile-text h1, .profile-text p, .profile-text a {
     font-family: "Inter", serif;
     font-weight: 300;
     font-size: 1.25rem;
