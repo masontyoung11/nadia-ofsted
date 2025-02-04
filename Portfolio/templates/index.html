@@ -9,11 +9,39 @@
 
 
 {% block content %} 
-<div class="profile-container">
-    <img src="{% static 'images/profile.webp'%}" alt="Profile Picture" class="pfp"/>
-    <div class="profile-text">
-        <h1 class="name">Mason Young</h1>
-        <p class="role">Student/Software Developer</p>
+<div class="page-container">
+    <div class="profile-container">
+        <img src="{% static 'images/profile.webp'%}" alt="Profile Picture" class="pfp"/>
+        <div class="profile-text">
+            <h1 class="name">Mason Young</h1>
+            <p class="role">Student/Software Developer</p>
+            <a href="https://github.com/masontyoung11" class="github-link">@masontyoung11</a>
+        </div>
+    </div>
+
+    <div class="about">
+        <h1 class="about-title page-title">About</h1>
+        <p class="about-content page-content">Now then, I'm mason a 17 y/o software dev in the making. 👋<br>
+            Currenly in college, taking a deep dive into Django. 🌊<br>
+            I am passionate about developing creative solutions to solve real world problems; I love turning ideas into reality through code. 💻
+        </p>
+    </div>
+
+    <div class="work-experience">
+        <h1 class="work-title page-title">Work Experience</h1>
+        <div class="re-macs work-exp-section">
+            <p class="re-macs-date date">
+                2024 - present
+            </p>
+            <div class="re-macs-content work-exp-content">
+                <a class="re-macs-title work-exp-title" href="https://re-macs.com">Mac QA Tester – Re-Macs</a>
+                <p class="re-macs-desc work-exp-desc">Working with a team of tight-knit testers, developers and technicians,
+                    collaborating to ensure our refurbished Apple products meet the highest of standards of quality and performance.
+                    As a tester, my role involves diagnosing hardware issues and completing quality assurance checks.
+                </p>
+                <p class="re-macs-roles work-exp-roles">Testing &#183; Cleaning</p>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
